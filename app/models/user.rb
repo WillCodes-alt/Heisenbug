@@ -4,8 +4,8 @@ class User < ApplicationRecord
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :validatable, :confirmable, :trackable
 
-#  has_many :projects , foreign_key: :creator_id, dependent: :destroy
+  has_many :projects , foreign_key: :creator_id, dependent: :destroy
   has_many :bugs , through: :projects
   has_many :comments, through: :bugs
-  has_many :projects, through: :projects_enrollments
+ # has_many :projects, through: :users_projects
 end
