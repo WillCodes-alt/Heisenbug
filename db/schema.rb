@@ -61,8 +61,14 @@ ActiveRecord::Schema.define(version: 2019_07_15_090237) do
   end
 
   create_table "comments", force: :cascade do |t|
+    t.bigint "bug_id"
+    t.bigint "user_id"
+    t.string "statement"
+    t.datetime "time"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.index ["bug_id"], name: "index_comments_on_bug_id"
+    t.index ["user_id"], name: "index_comments_on_user_id"
   end
 
   create_table "projects", force: :cascade do |t|
@@ -99,4 +105,6 @@ ActiveRecord::Schema.define(version: 2019_07_15_090237) do
 
   add_foreign_key "active_storage_attachments", "active_storage_blobs", column: "blob_id"
   add_foreign_key "bugs", "projects"
+  add_foreign_key "comments", "bugs"
+  add_foreign_key "comments", "users"
 end
