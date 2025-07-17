@@ -4,4 +4,5 @@ class CommentPolicy < ApplicationPolicy
       scope.all
     end
   end
+
 end

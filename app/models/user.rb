@@ -9,4 +9,6 @@ class User < ApplicationRecord
   has_many :comments, through: :bugs
   has_many :enrollments
   has_many :project_enrollment , through: :enrollments ,source: :project
+
+  enum role: [:Manager, :Developer, :Quality]
 end
