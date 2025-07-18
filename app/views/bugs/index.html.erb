@@ -12,9 +12,9 @@
   <tbody>
     <% @bugs.each do |bug| %>
       <tr>
-        <td><%= link_to 'Show', bug %></td>
-        <td><%= link_to 'Edit', edit_bug_path(bug) %></td>
-        <td><%= link_to 'Destroy', bug, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+        <td><%= link_to 'Show', project_bug_path(@project,bug) %></td>
+        <td><%= link_to 'Edit', edit_project_bug_path(@project,bug) %></td>
+        <td><%= link_to 'Destroy', project_bug_path(@project,bug), method: :delete, data: { confirm: 'Are you sure?' } %></td>
       </tr>
     <% end %>
   </tbody>
@@ -22,4 +22,4 @@
 
 <br>
 
-<%= link_to 'New Bug', new_bug_path %>
+<%= link_to 'New Bug', new_project_bug_path %>

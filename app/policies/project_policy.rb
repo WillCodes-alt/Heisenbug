@@ -1,6 +1,6 @@
 class ProjectPolicy < ApplicationPolicy
   attr_reader :user, :project
-  raise Pundit::NotAuthorizedError, "must be logged in" unless user
+  raise Pundit::NotAuthorizedError, "must be logged in" unless User
   class Scope < Scope
     def resolve
       scope.all
@@ -12,9 +12,6 @@ class ProjectPolicy < ApplicationPolicy
     @project = project
   end
 
-  def index?
-    true
-  end
 
   def create?
 
@@ -24,9 +21,6 @@ class ProjectPolicy < ApplicationPolicy
     false
   end
 
-  def show?
-    true
-  end
 
   def update?
     if @user == @project.creator && @user.role == 'Manager'

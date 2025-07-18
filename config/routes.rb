@@ -3,8 +3,8 @@ Rails.application.routes.draw do
   devise_for :users
 
 
-  resource :projects do
-    resource :bugs do
+  resources :projects do
+    resources :bugs do
       resource :comments
     end
   end
