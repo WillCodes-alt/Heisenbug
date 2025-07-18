@@ -1,4 +1,17 @@
 <p id="notice"><%= notice %></p>
 
+
+
+  <% @bug.comments.each do |comment| %>
+    <%= comment.statement %>
+    <%= link_to 'show', project_bug_comment_path(@project,@bug,comment) %>
+  <%= link_to 'edit', edit_project_bug_comment_path(@project,@bug,comment) %>
+  <br />
+
+    <% end %>
+
+
+
+<br />
 <%= link_to 'Edit', edit_project_bug_path(@bug) %> |
 <%= link_to 'Back', project_bugs_path %>

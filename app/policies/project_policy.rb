@@ -37,7 +37,7 @@ class ProjectPolicy < ApplicationPolicy
   end
 
   def delete
-    if @user == @project.creator && @user.role =='Manager'
+    if @user == @project.creator && @user.Manager?
       return true
     end
     false

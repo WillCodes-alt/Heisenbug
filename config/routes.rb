@@ -5,7 +5,7 @@ Rails.application.routes.draw do
 
   resources :projects do
     resources :bugs do
-      resource :comments
+      resources :comments
     end
   end
 
