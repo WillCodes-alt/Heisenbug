@@ -1,0 +1,35 @@
+<%= form_with(model: [@project,bug], local: true) do |form| %>
+  <% if bug.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(bug.errors.count, "error") %> prohibited this bug from being saved:</h2>
+
+      <ul>
+      <% bug.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+<div>
+  <%= form.text_field :title %>
+
+</div>
+  <div>
+    <%= form.text_field :description %>
+
+
+  </div>
+  <div>
+    <%= form.datetime_select :deadline %>
+
+  </div>
+
+  <div>
+    <%= form.select  :assigned_to, options_from_collection_for_select(user.Developer,"id","full_name") %>
+
+  </div>
+
+  <div class="actions">
+    <%= form.submit %>
+  </div>
+<% end %>

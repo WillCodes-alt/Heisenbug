@@ -1,0 +1,6 @@
+<h1>Editing Bug</h1>
+
+<%= render 'form', bug: @bug, user: User.all  %>
+
+<%= link_to 'Show', project_bug_path(Project,@bug) %> |
+<%= link_to 'Back', project_bugs_path %>
