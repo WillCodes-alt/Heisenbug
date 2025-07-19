@@ -4,7 +4,11 @@ class ProjectsController < ApplicationController
   # GET /projects
   # GET /projects.json
   def index
-    @projects = current_user.projects.all
+    if current_user.Manager?
+      @projects = current_user.projects.all
+    else
+      @projects = current_user.project_enrollment
+    end
   end
 
   # GET /projects/1
@@ -20,7 +24,7 @@ class ProjectsController < ApplicationController
 
   # GET /projects/1/edit
   def edit
-
+    authorize @project
   end
 
   # POST /projects

@@ -13,14 +13,16 @@
  *= require font-awesome
  *= require bootstrap
  *= require mdb
-*= require custom
+ *= require custom
+ *= require addons/datatables
+ *= require addons/datatables-select
+ *= require addons/directives
+ *= require modules/animations-extended
  *= require_self
  *= require_tree .
  */
 
-.nav-item{
-    color: #fff;
-}
+
 
 
 

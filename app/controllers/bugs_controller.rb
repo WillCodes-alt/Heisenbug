@@ -17,10 +17,12 @@ class BugsController < ApplicationController
   def new
     @project = Project.find(params[:project_id])
     @bug = @project.bugs.new
+    authorize @bug
   end
 
   # GET /bugs/1/edit
   def edit
+    authorize @bug
   end
 
   # POST /bugs
@@ -64,7 +66,7 @@ class BugsController < ApplicationController
   def destroy
     @bug.destroy
     respond_to do |format|
-      format.html {redirect_to bugs_url, notice: 'Bug was successfully destroyed.'}
+      format.html {redirect_to [@project,Bug], notice: 'Bug was successfully destroyed.'}
       format.json {head :no_content}
     end
   end
@@ -73,7 +75,7 @@ class BugsController < ApplicationController
 
   # Use callbacks to share common setup or constraints between actions.
   def set_bug
-    @project = Project.find(params[:id])
+    @project = Project.find(params[:project_id])
     @bug = Bug.find(params[:id])
   end
 

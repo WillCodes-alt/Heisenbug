@@ -20,11 +20,6 @@ ActiveRecord::Schema.define(version: 2019_07_15_090237) do
     t.bigint "Comment_id", null: false
   end
 
-  create_table "Projects_Users", id: false, force: :cascade do |t|
-    t.bigint "User_id", null: false
-    t.bigint "Project_id", null: false
-  end
-
   create_table "active_storage_attachments", force: :cascade do |t|
     t.string "name", null: false
     t.string "record_type", null: false
@@ -78,6 +73,11 @@ ActiveRecord::Schema.define(version: 2019_07_15_090237) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["creator_id"], name: "index_projects_on_creator_id"
+  end
+
+  create_table "projects_users", id: false, force: :cascade do |t|
+    t.bigint "user_id", null: false
+    t.bigint "project_id", null: false
   end
 
   create_table "users", force: :cascade do |t|

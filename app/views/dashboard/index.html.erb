@@ -1,0 +1,7 @@
+<% if current_user.Manager? %>
+  <%= render "dashboard/manager" %>
+<% elsif current_user.Developer?%>
+    <%= render  "dashboard/developer" %>
+<% else %>
+<%= render  "dashboard/quality" %>
+<% end %>

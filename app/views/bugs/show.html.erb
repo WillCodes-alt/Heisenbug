@@ -6,6 +6,7 @@
     <%= comment.statement %>
     <%= link_to 'show', project_bug_comment_path(@project,@bug,comment) %>
   <%= link_to 'edit', edit_project_bug_comment_path(@project,@bug,comment) %>
+  <%= link_to 'delete', project_bug_comment_path(@project,@bug,comment), method: :delete, data: { confirm: 'Are you sure?' }  %>
   <br />
 
     <% end %>
