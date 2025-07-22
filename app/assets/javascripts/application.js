@@ -18,3 +18,6 @@
 //= require activestorage
 //= require turbolinks
 //= require_tree .
+new FroalaEditor('selector',{
+
+});
