@@ -1,6 +1,90 @@
-<h1>Editing Project</h1>
+<header>
+  <nav class="navbar fixed-top navbar-expand-lg navbar-dark mdb-color darken-3">
+    <div class="container">
+      <a class="navbar-brand" href="http://devsinc.com"><strong>BugZilla</strong></a>
 
-<%= render 'form', project: @project, user: User.all %>
+      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarsupport"
+              aria-controls="navbarsupport" aria-expanded="false" aria-label="Toggle">
+        <span class="navbar-toggler-icon"></span>
+      </button>
 
-<%= link_to 'Show', @project %> |
-<%= link_to 'Back', projects_path %>
+      <div class="collapse navbar-collapse" id="navbarsupport">
+
+
+        <ul class="navbar-nav mr-auto">
+          <li class="nav-item active">
+            <a class="nav-link" href="#">Home
+              <span class="sr-only">(current)</span>
+            </a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="#">About BugZilla</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="#">Pricing</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="#">Help</a>
+          </li>
+        </ul>
+
+
+        <ul class="navbar-nav nav-flex-icons">
+          <li class="nav-item">
+            <a class="nav-link" href="http://facebook.com">
+              <i class="fa fa-github"></i>
+            </a>
+          </li>
+
+
+          <li class="nav-item">
+            <a class="nav-link" href="http://facebook.com">
+              <i class="fa fa-facebook-f"></i>
+            </a>
+          </li>
+
+          <li class="nav-item">
+            <a class="nav-link" href="http://facebook.com">
+              <i class="fa fa-twitter"></i>
+            </a>
+          </li>
+
+          <% if current_user %>
+            <li class="nav-item">
+              <a href="<%= new_user_registration_path %>" class="nav-link border border-light rounded"
+              >
+                <i class="fa fa-user mr-2"></i><%= current_user.full_name %>
+              </a>
+            </li>
+          <% else %>
+            <li class="nav-item">
+              <a href="<%= new_user_registration_path %>" class="nav-link border border-light rounded"
+              >
+                <i class="fa fa-user mr-2"></i>Sing Up
+              </a>
+            </li>
+
+            <li class="nav-item ml-2">
+              <a href="<%= user_session_path %>" class="nav-link border border-light rounded"
+              >
+                <i class="fa fa-user mr-2"></i>Login
+              </a>
+            </li>
+          <% end %>
+
+        </ul>
+
+      </div>
+    </div>
+  </nav>
+</header>
+
+<section id="projects">
+
+  <div class="container-fluid">
+
+  <%= render 'form', project: @project, user: User.all %>
+  </div>
+</section>
+<!--<%#= link_to 'Show', @project %> |-->
+<%#= link_to 'Back', projects_path %>
