@@ -43,7 +43,7 @@ ActiveRecord::Schema.define(version: 2019_07_15_090237) do
 
   create_table "bugs", force: :cascade do |t|
     t.string "title", null: false
-    t.string "description"
+    t.text "description"
     t.datetime "deadline"
     t.bigint "assigned_to_id"
     t.bigint "project_id"
@@ -68,7 +68,7 @@ ActiveRecord::Schema.define(version: 2019_07_15_090237) do
 
   create_table "projects", force: :cascade do |t|
     t.string "title", null: false
-    t.string "description"
+    t.text "description"
     t.bigint "creator_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false

@@ -1,26 +1,72 @@
-<%= form_with(model: project, local: true) do |form| %>
-  <% if project.errors.any? %>
-    <div id="error_explanation">
-      <h2><%= pluralize(project.errors.count, "error") %> prohibited this project from being saved:</h2>
 
-      <ul>
-      <% project.errors.full_messages.each do |message| %>
-        <li><%= message %></li>
-      <% end %>
-      </ul>
-    </div>
-  <% end %>
-<div>
+<div class="card">
 
-  <%= form.text_field :title  %>
+  <h5 class="card-header white-text mdb-color darken-3 text-left py-4">
+    <strong>New Project</strong>
+  </h5>
+
+  <!--Card content-->
+  <div class="card-body px-lg-5 pt-0">
+
+
+    <%= form_with(model: project, local: true, class:'text-center') do |form| %>
+
+      <div class="md-form">
+        <%= form.text_field :title, class:'form-control', id: 'materialLoginFormEmail' %>
+        <label for="materialLoginFormEmail">Project Title</label>
+      </div>
+
+      <!-- Password -->
+      <div class="md-form">
+        <div class="mt-5 pt-5">
+
+          <%= form.text_area :description, id: 'editor' ,class:'form-control'%>
+
+
+        </div>
+
+        <label  for="description">Project Description</label>
+      </div>
+
+      <div class="md-form">
+
+        <div class="mt-5 pt-5">
+          <%= select_tag(:users, options_from_collection_for_select(user.where.not(:role=>'Manager'),"id","full_name"), options = {multiple: true,class:'form-control'}) %>
+
+        </div>
+        <label  for="user">Participating Users</label>
+
+      </div>
+
+
+
+
+
+
+
+      </div>
+
+      <%= form.submit class: 'btn  btn-rounded mdb-color darken-3 white-text m-5'%>
+      <!-- Sign in button -->
+
+
+    </form>
+    <!-- Form -->
+
+  </div>
+
 </div>
-  <div>
+<!-- Material form login -->
 
-    <%= form.text_field :description  %>
-  </div>
-
-
-  <div class="actions">
-    <%= form.submit %>
-  </div>
 <% end %>
+
+
+<script>
+    new FroalaEditor('#editor',{
+
+
+
+    });
+
+
+</script>

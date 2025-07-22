@@ -17,7 +17,7 @@
 //= require mdb
 //= require activestorage
 //= require turbolinks
+//= require froala_editor.min.js
 //= require_tree .
-new FroalaEditor('selector',{
 
-});
+
