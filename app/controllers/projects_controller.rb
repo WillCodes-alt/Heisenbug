@@ -4,7 +4,7 @@ class ProjectsController < ApplicationController
   # GET /projects
   # GET /projects.json
   def index
-    UserMailer.with(user: @user).welcome_email.deliver_now
+    #UserMailer.with(user: @user).welcome_email.deliver_now
     if current_user.Manager?
       @projects = current_user.projects.all
     else

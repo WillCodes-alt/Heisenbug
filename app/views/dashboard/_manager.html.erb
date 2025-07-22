@@ -1,1 +1,247 @@
-<h1>welcome Manager</h1>
+<header>
+  <nav class="navbar fixed-top navbar-expand-lg navbar-dark mdb-color darken-3">
+    <div class="container">
+      <a class="navbar-brand" href="http://devsinc.com"><strong>BugZilla</strong></a>
+
+      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarsupport"
+              aria-controls="navbarsupport" aria-expanded="false" aria-label="Toggle">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+
+      <div class="collapse navbar-collapse" id="navbarsupport">
+
+
+        <ul class="navbar-nav mr-auto">
+          <li class="nav-item active">
+            <a class="nav-link" href="#">Home
+              <span class="sr-only">(current)</span>
+            </a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="#">About BugZilla</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="#">Pricing</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="#">Help</a>
+          </li>
+        </ul>
+
+
+        <ul class="navbar-nav nav-flex-icons">
+          <li class="nav-item">
+            <a class="nav-link" href="http://facebook.com">
+              <i class="fa fa-github"></i>
+            </a>
+          </li>
+
+
+          <li class="nav-item">
+            <a class="nav-link" href="http://facebook.com">
+              <i class="fa fa-facebook-f"></i>
+            </a>
+          </li>
+
+          <li class="nav-item">
+            <a class="nav-link" href="http://facebook.com">
+              <i class="fa fa-twitter"></i>
+            </a>
+          </li>
+
+          <% if current_user %>
+            <li class="nav-item">
+              <a href="<%= new_user_registration_path %>" class="nav-link border border-light rounded"
+              >
+                <i class="fa fa-user mr-2"></i><%= current_user.full_name %>
+              </a>
+            </li>
+          <% else %>
+            <li class="nav-item">
+              <a href="<%= new_user_registration_path %>" class="nav-link border border-light rounded"
+              >
+                <i class="fa fa-user mr-2"></i>Sing Up
+              </a>
+            </li>
+
+            <li class="nav-item ml-2">
+              <a href="<%= user_session_path %>" class="nav-link border border-light rounded"
+              >
+                <i class="fa fa-user mr-2"></i>Login
+              </a>
+            </li>
+          <% end %>
+
+        </ul>
+
+      </div>
+    </div>
+  </nav>
+</header>
+
+<section>
+
+  <div class="container-fluid">
+
+
+
+    <!-- Page Heading -->
+    <div class="d-sm-flex align-items-center justify-content-between mb-4">
+      <h1 class="h3 mb-0 text-gray-800">Dashboard</h1>
+    </div>
+
+    <!-- Content Row -->
+    <div class="row">
+
+      <div class="col-xl-3 col-md-6 mb-4">
+        <div class="card border-left-primary shadow h-100 py-2">
+          <div class="card-body">
+            <div class="row no-gutters align-items-center">
+              <div class="col mr-2">
+                <div class="text-xs font-weight-bold text-primary text-uppercase mb-1">Total Bugs</div>
+                <div class="h5 mb-0 font-weight-bold text-gray-800">40,000</div>
+              </div>
+              <div class="col-auto">
+                <i class="fa fa-calendar fa-2x text-gray-300"></i>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+
+      <div class="col-xl-3 col-md-6 mb-4">
+        <div class="card border-left-success shadow h-100 py-2">
+          <div class="card-body">
+            <div class="row no-gutters align-items-center">
+              <div class="col mr-2">
+                <div class="text-xs font-weight-bold text-success text-uppercase mb-1">Active</div>
+                <div class="h5 mb-0 font-weight-bold text-gray-800">$15</div>
+              </div>
+
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Earnings (Monthly) Card Example -->
+      <div class="col-xl-3 col-md-6 mb-4">
+        <div class="card border-left-info shadow h-100 py-2">
+          <div class="card-body">
+            <div class="row no-gutters align-items-center">
+              <div class="col mr-2">
+                <div class="text-xs font-weight-bold text-info text-uppercase mb-1">Work Progress</div>
+                <div class="row no-gutters align-items-center">
+                  <div class="col-auto">
+                    <div class="h5 mb-0 mr-3 font-weight-bold text-gray-800">50%</div>
+                  </div>
+                  <div class="col">
+                    <div class="progress progress-sm mr-2">
+                      <div class="progress-bar bg-info" role="progressbar" style="width: 50%" aria-valuenow="50" aria-valuemin="0" aria-valuemax="100"></div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="col-auto">
+                <i class="fa fa-clipboard-list fa-2x text-gray-300"></i>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Pending Requests Card Example -->
+      <div class="col-xl-3 col-md-6 mb-4">
+        <div class="card border-left-warning shadow h-100 py-2">
+          <div class="card-body">
+            <div class="row no-gutters align-items-center">
+              <div class="col mr-2">
+                <div class="text-xs font-weight-bold text-warning text-uppercase mb-1">Resolved Bugs</div>
+                <div class="h5 mb-0 font-weight-bold text-gray-800">18</div>
+              </div>
+              <div class="col-auto">
+                <i class="fa fa-comments fa-2x text-gray-300"></i>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+</section>
+<section id="projects">
+
+
+ <div class="container-fluid">
+
+   <div class="d-sm-flex align-items-center justify-content-between mb-4">
+     <h1 class="h3 mb-0 text-gray-800">Projects</h1>
+     <div class="justify-content-end">
+       <a href="<%= projects_path %>" class="btn btn-sm btn-dark mdb-color darken-3 text-white"><i class="fa fa-eye fa-lg text-white"></i>
+         All Projects</a>
+       <a href="<%= new_project_path %>" class="btn btn-sm btn-dark mdb-color darken-3 text-white"><i class="fa fa-plus fa-sm text-white"></i>
+         create new Project</a>
+     </div>
+   </div>
+
+<% projects.each do |project|%>
+
+
+
+
+     <div class="row mb-4">
+
+       <a  class="" href="<%=project_path project %>">
+       <div class="col-lg-12">
+
+         <!-- Card -->
+         <div class="card">
+
+           <!-- Card content -->
+           <div class="card-body">
+
+             <!-- Title -->
+             <h4 class="card-title"><%= project.title %></h4>
+             <hr>
+             <!-- Text -->
+             <p class="card-text"><%= project.description %>
+           </div>
+
+           <!-- Card footer -->
+           <div class="rounded-bottom mdb-color darken-3  pt-3">
+             <ul class="list-unstyled list-inline font-small">
+               <li class="list-inline-item pr-2 white-text"><i class="far fa-clock pr-1"></i><b>Started</b>: 05/10/2015
+               </li>
+               <li class="list-inline-item pr-2"><a href="#" class="white-text"><i class="fa fa-bug pr-1"></i>12</a>
+               </li>
+               <li class="list-inline-item pr-2">
+                 <a href="#" class="white-text"><i class="fa fa-empire pr-1"> </i>21</a></li>
+               <li class="list-inline-item"><a href="#" class="white-text"><i class="fa fa-user pr-1"> </i>5</a></li>
+             </ul>
+           </div>
+
+         </div>
+         <!-- Card -->
+       </div>
+       </a>
+
+     </div>
+
+
+
+
+
+
+
+
+
+ <% end %>
+
+
+
+ </div>
+
+  <!-- Content Row -->
+
+</section>
