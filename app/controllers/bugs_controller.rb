@@ -30,7 +30,7 @@ class BugsController < ApplicationController
   def create
     @project = Project.find(params[:project_id])
     form_data = bug_params
-    form_data[:assigned_to] = User.find(bug_params[:assigned_to])
+    #form_data[:assigned_to] = User.find(bug_params[:assigned_to])
     @bug = @project.bugs.new(form_data)
     @bug.posted_by = current_user
 
@@ -50,7 +50,7 @@ class BugsController < ApplicationController
   def update
     respond_to do |format|
       form_data = bug_params
-      form_data[:assigned_to] = User.find(bug_params[:assigned_to])
+     # form_data[:assigned_to] = User.find(bug_params[:assigned_to])
       if @bug.update(form_data)
         format.html {redirect_to @bug, notice: 'Bug was successfully updated.'}
         format.json {render :show, status: :ok, location: @bug}
@@ -81,6 +81,7 @@ class BugsController < ApplicationController
 
   # Never trust parameters from the scary internet, only allow the white list through.
   def bug_params
-    params.require(:bug).permit(:title, :description, :deadline, :assigned_to)
+    params[:bug][:usertype] = params[:bug][:usertype].to_i
+    params.require(:bug).permit(:title, :description, :deadline, :usertype, images: [])
   end
 end

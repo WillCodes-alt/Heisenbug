@@ -48,10 +48,17 @@
                     <div class="justify-content-between">
                       <h4>
                         <%= link_to bug.title, project_bug_path(@project, bug) %>
-                        </a>
+                        <% if bug.Bug? %>
+                          <i class="fa fa-bug red-text"></i>
+                          <% elsif bug.Feature? %>
+                          <i class="fa fa-plus-circle green-text"></i>
+                          <% else %>
+                          <i class="fa fa-arrow-up blue-text"></i>
+                      <% end %>
 
 
-                        <div class="float-right">
+
+                          <div class="float-right">
                           <%= link_to [@project, bug], method: :delete, data: {confirm: "Are you sure you want to delete this user?"}, class: "btn btn-responsive btn-default btn-sm mdb-color darken-3 " do %>
                             <%= fa_icon "bitbucket" %> Delete
                           <% end %>
@@ -137,49 +144,3 @@
 
 </section>
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-<p id="notice"><%= notice %></p>
-
-<h1>Bugs</h1>
-
-<table>
-  <thead>
-  <tr>
-    <th colspan="3"></th>
-  </tr>
-  </thead>
-
-  <tbody>
-  <% @bugs.each do |bug| %>
-    <tr>
-      <td><%= link_to 'Show', project_bug_path(@project, bug) %></td>
-      <td><%= link_to 'Edit', edit_project_bug_path(@project, bug) %></td>
-      <td><%= link_to 'Destroy', project_bug_path(@project, bug), method: :delete, data: {confirm: 'Are you sure?'} %></td>
-    </tr>
-  <% end %>
-  </tbody>
-</table>
-
-<br>
-
-<%= link_to 'New Bug', new_project_bug_path %>

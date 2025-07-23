@@ -82,6 +82,7 @@
 <section>
 
   <div class="container-fluid">
+    <%= render 'form', project: @project, user: User.all %>
   </div>
 </section>
 
@@ -91,6 +92,6 @@
 
 
 
-<%= render 'form', project: @project, user: User.all %>
+
 
 <%#= link_to 'Back', projects_path %>

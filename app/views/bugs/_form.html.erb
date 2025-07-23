@@ -1,35 +1,64 @@
-<%= form_with(model: [@project,bug], local: true) do |form| %>
-  <% if bug.errors.any? %>
-    <div id="error_explanation">
-      <h2><%= pluralize(bug.errors.count, "error") %> prohibited this bug from being saved:</h2>
+<% if bug.errors.any? %>
+  <div id="error_explanation">
+    <h2><%= pluralize(bug.errors.count, "error") %> prohibited this bug from being saved:</h2>
 
-      <ul>
+    <ul>
       <% bug.errors.full_messages.each do |message| %>
         <li><%= message %></li>
       <% end %>
-      </ul>
-    </div>
-  <% end %>
-<div>
-  <%= form.text_field :title %>
-
-</div>
-  <div>
-    <%= form.text_field :description %>
-
-
-  </div>
-  <div>
-    <%= form.datetime_select :deadline %>
-
-  </div>
-
-  <div>
-    <%= form.select  :assigned_to, options_from_collection_for_select(user.Developer,"id","full_name") %>
-
-  </div>
-
-  <div class="actions">
-    <%= form.submit %>
+    </ul>
   </div>
 <% end %>
+
+<div class="card">
+
+  <h5 class="card-header white-text mdb-color darken-3 text-left py-4">
+    <strong>Bug</strong>
+  </h5>
+
+  <!--Card content-->
+  <div class="card-body px-lg-5 pt-0">
+    <%= form_with(model: [@project,bug], local: true,class:'text-center') do |form| %>
+      <div class="md-form">
+        <%= form.text_field :title, class:'form-control', id: 'materialLoginFormEmail' %>
+        <label for="materialLoginFormEmail">Bug Title</label>
+      </div>
+      <div class="md-form">
+        <div class="mt-5 pt-5 text-left">
+          <%= form.select :usertype,options_for_select(Bug.usertypes),class: 'form-control' %>
+        </div>
+        <label  for="description">Type</label>
+      </div>
+      <div class="md-form">
+        <div class="mt-5 pt-5 text-left">
+          <%= form.datetime_select :deadline,class: 'form-control' %>
+        </div>
+        <label  for="description">DeadLine</label>
+      </div>
+      <div class="md-form">
+        <div class="mt-5 pt-5">
+          <%= form.text_area :description, id: 'editor' ,class:'form-control'%>
+        </div>
+        <label  for="description">Bug Description</label>
+      </div>
+
+      <div class="md-form">
+        <div class="mt-5 pt-5">
+          <%= form.file_field :images ,multiple: true,class:'form-control'%>
+        </div>
+        <label  for="description">Bug Images</label>
+      </div>
+
+      <div class="md-form">
+        <%= form.submit class: 'btn  btn-rounded mdb-color darken-3 white-text form-control'%>
+      </div>
+    <% end %>
+  </div>
+</div>
+
+<script>
+    new FroalaEditor('#editor',{
+
+    });
+
+</script>
