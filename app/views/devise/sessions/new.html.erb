@@ -1,89 +1,43 @@
-
 <%= render 'layouts/header' %>
 
 <section>
 
   <div class="container-fluid">
-    <form class="text-center border border-light p-5" action="#!">
-      <p class="h4 mb-4">Sign in</p>
+    <div class="container ml-lg-auto mr-lg-auto mt-lg-5 w-responsive w-75 p-lg-5">
+      <%= form_for(resource, as: resource_name, url: session_path(resource_name), class: 'text-center border border-light p-5') do |f| %>
 
-      <!-- Email -->
-      <input type="email" id="defaultLoginFormEmail" class="form-control mb-4" placeholder="E-mail">
+        <p class="h4 mb-4">Sign in</p>
 
-      <!-- Password -->
-      <input type="password" id="defaultLoginFormPassword" class="form-control mb-4" placeholder="Password">
+        <%= f.email_field :email, autofocus: true, autocomplete: "email", placeholder: "E-mail", class: 'form-control mb-4' %>
+        <%= f.password_field :password, autocomplete: "current-password", placeholder: "Password", class: "form-control mb-4" %>
 
-      <div class="d-flex justify-content-around">
-        <div>
-          <!-- Remember me -->
-          <div class="custom-control custom-checkbox">
-            <input type="checkbox" class="custom-control-input" id="defaultLoginFormRemember">
-            <label class="custom-control-label" for="defaultLoginFormRemember">Remember me</label>
+        <div class="d-flex justify-content-start">
+          <div>
+            <% if devise_mapping.rememberable? %>
+              <div class="custom-checkbox">
+                <%= f.check_box :remember_me %>
+                <%= f.label :remember_me ,class:"d-inline-block"%>
+              </div>
+            <% end %>
           </div>
         </div>
+
+        <!-- Sign in button -->
+        <%= f.submit "Sign in",class:"btn btn-info btn-block my-4 mdb-color darken-3" %>
+
         <div>
           <!-- Forgot password -->
-          <a href="">Forgot password?</a>
+          <%= render "devise/shared/links" %>
         </div>
-      </div>
-
-      <!-- Sign in button -->
-      <button class="btn btn-info btn-block my-4" type="submit">Sign in</button>
-
-      <!-- Register -->
-      <p>Not a member?
-        <a href="">Register</a>
-      </p>
-
-      <!-- Social login -->
-      <p>or sign in with:</p>
-
-      <a type="button" class="light-blue-text mx-2">
-        <i class="fab fa-facebook-f"></i>
-      </a>
-      <a type="button" class="light-blue-text mx-2">
-        <i class="fab fa-twitter"></i>
-      </a>
-      <a type="button" class="light-blue-text mx-2">
-        <i class="fab fa-linkedin-in"></i>
-      </a>
-      <a type="button" class="light-blue-text mx-2">
-        <i class="fab fa-github"></i>
-      </a>
-
-    </form>
-    <!-- Default form login -->
 
 
+      <% end %>
+      <!-- Default form login -->
+
+
+
+    </div>
   </div>
 
 </section>
 
-<h2>Log in</h2>
-
-<%= form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
-
-
-  <div class="field">
-    <%= f.label :email %><br />
-    <%= f.email_field :email, autofocus: true, autocomplete: "email" %>
-  </div>
-
-  <div class="field">
-    <%= f.label :password %><br />
-    <%= f.password_field :password, autocomplete: "current-password" %>
-  </div>
-
-  <% if devise_mapping.rememberable? %>
-    <div class="field">
-      <%= f.check_box :remember_me %>
-      <%= f.label :remember_me %>
-    </div>
-  <% end %>
-
-  <div class="actions">
-    <%= f.submit "Log in" %>
-  </div>
-<% end %>
-
-<%= render "devise/shared/links" %>
