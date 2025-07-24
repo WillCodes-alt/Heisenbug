@@ -11,7 +11,7 @@ class CommentPolicy < ApplicationPolicy
   end
 
   def create?
-    if comment.bug.project.enrolled_users.include?(@user) || comment.bug.project.creator == @user
+    if @comment.bug.project.enrolled_user.include?(@user) || @comment.bug.project.creator == @user
       return true
     end
     false

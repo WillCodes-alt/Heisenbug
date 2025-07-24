@@ -1,20 +1,133 @@
 <%= render 'layouts/header' %>
 
-<p id="notice"><%= notice %></p>
+<section>
+
+  <div class="container-fluid">
+
+
+    <p id="notice"><%= notice %></p>
+
+    <div class="row">
+      <div class="col-lg-9 mt-3">
+
+        <div class="card">
+          <div class="card-body">
+            <div class="row">
+              <div class="col-lg-8">
+                <h5 class="card-title"><%= @bug.title %></h5>
+              </div>
+              <div class="col-lg-4 grey-text">
+
+                <h class="h5">Posted by: <%= @bug.posted_by.full_name %></h>
+              </div>
+            </div>
+            <hr class="hr-dark"/>
+            <p class="card-text"><%= raw @bug.description %></p>
+              <% if @bug.images.attached? %>
+              <div class="mt-3">
+
+
+                <% @bug.images.each do |image| %>
+                  <a href="<%= rails_blob_path(image) %>">
+                  <div class="list-group-item mt-2">
+
+                    <i class="fa fa-file blue-text mr-1"> <%= image.filename %></i>
+
+
+                  </div>
+
+                    </a>
+                <% end %>
+
+              </div>
+              <% end %>
 
 
 
-  <% @bug.comments.each do |comment| %>
-    <%= comment.statement %>
-    <%= link_to 'show', project_bug_comment_path(@project,@bug,comment) %>
-  <%= link_to 'edit', edit_project_bug_comment_path(@project,@bug,comment) %>
-  <%= link_to 'delete', project_bug_comment_path(@project,@bug,comment), method: :delete, data: { confirm: 'Are you sure?' }  %>
-  <br />
+          </div>
+        </div>
 
-    <% end %>
+          <div class="card mt-2">
+            <div class="card-header mdb-color darken-3 white-text">
+              <h class="h4-responsive" >Comments <i class="fa fa-comment"></i></h>
+            </div>
+            <div class="card-body">
+
+
+              <ul class="list-group list-group-flush">
+                <% if @bug.comments.count > 0 %>
+                <% @bug.comments.each do |comment| %>
+
+
+                  <li class="list-group-item p-1" >
+                      <span class="fa-stack fa-lg mr-1">
+                      <i class="fa fa-user-circle fa-2x blue-text"></i>
+                      </span><span class="purple-text"><%= comment.user.full_name %>: </span><span> <%= comment.statement %></span>
+                    <% if policy(comment).delete? %>
+                    <span class="float-right grey-text">
+                      <span class="hoverable"><i class="fa fa-trash"></i></span>
+                    </span>
+                    <% end %>
+
+                  </li>
+
+                <% end %>
+
+
+                  <%= form_for( [@project,@bug,@bug.comments.new]) do |form| %>
+                  <li class="list-group-item p-1 mdb-color mt-2" >
+                      <span class="fa-stack fa-lg mr-1">
+                      <i class="fa fa-user-circle fa-2x blue-text white border rounded rounded-circle flex-column"></i>
+                      </span><span class="white-text"><%= current_user.full_name %>: </span>
+                    <span class="d-lg-inline-block">
+
+                    <%= form.text_field :statement,size:80%>
+                      <%= form.submit  class: 'mdb-color darken-3 white-text border-2'%>
+                  </span>
+                  </li>
+                  <% end %>
+
+                <% end %>
+              </ul>
+
+
+            </div>
+          </div>
 
 
 
-<br />
-<%= link_to 'Edit', edit_project_bug_path(@bug) %> |
-<%= link_to 'Back', project_bugs_path %>
+      </div>
+      <div class="col-lg-3 mt-3">
+
+        <div class="card">
+          <div class="card-header mdb-color darken-3 white-text">
+            <h class="h4-responsive"> Bug Info</h>
+          </div>
+          <ul class="list-group list-group-flush">
+            <li class="list-group-item">
+              <% if @bug.Bug? %>
+                <i class="fa fa-bug fa-2x red-text">Bug</i>
+              <% elsif @bug.Feature?%>
+                <i class="fa fa-plus-circle fa-2x green-text">Feature</i>
+                <% else %>
+                <i class="fa fa-arrow-up fa-2x blue-text">Enhancement</i>
+                <% end %>
+            </li>
+            <li class="list-group-item"><i class="fa fa-comment fa-2x"> comments: <%= @bug.comments.count %></i></li>
+
+            <li class="list-group-item"><i class="fa fa-flag fa-2x green-text"> Taken:
+            <% if @bug.assigned_to_id? %>
+              <%= @bug.assigned_to.full_name %>
+             <% else %>
+              Not yet
+              <%end %>
+            </i></li>
+
+
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
