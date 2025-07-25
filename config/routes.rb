@@ -5,7 +5,7 @@ Rails.application.routes.draw do
 
   resources :projects do
     resources :bugs do
-      resources :comments
+      resources :comments, only: [:create,:destroy]
     end
   end
   get '/dashboard', to: 'dashboard#index', as: :user_root

@@ -19,9 +19,8 @@
   <!--Card content-->
   <div class="card-body px-lg-5 pt-0">
     <%= form_with(model: [@project,bug], local: true,class:'text-center') do |form| %>
-      <div class="md-form">
-        <%= form.text_field :title, class:'form-control', id: 'materialLoginFormEmail' %>
-        <label for="materialLoginFormEmail">Bug Title</label>
+      <div class="mb-4 mt-5">
+        <%= form.text_field :title, class:'form-control', placeholder: 'Bug Title'%>
       </div>
       <div class="md-form">
         <div class="mt-5 pt-5 text-left">

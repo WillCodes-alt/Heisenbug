@@ -149,13 +149,13 @@
               <!-- Card footer -->
               <div class="rounded-bottom mdb-color darken-3  pt-3">
                 <ul class="list-unstyled list-inline font-small">
-                  <li class="list-inline-item pr-2 white-text"><i class="far fa-clock pr-1"></i><b>Started</b>: 05/10/2015
+                  <li class="list-inline-item pr-2 white-text"><i class="far fa-clock pr-1"></i><b>Started</b>: <%= project.created_at.to_date %>
                   </li>
-                  <li class="list-inline-item pr-2"><a href="#" class="white-text"><i class="fa fa-bug pr-1"></i>12</a>
+                  <li class="list-inline-item pr-2"><a href="#" class="white-text"><i class="fa fa-bug pr-1"></i><%= project.bugs.count %></a>
                   </li>
                   <li class="list-inline-item pr-2">
-                    <a href="#" class="white-text"><i class="fa fa-empire pr-1"> </i>21</a></li>
-                  <li class="list-inline-item"><a href="#" class="white-text"><i class="fa fa-user pr-1"> </i>5</a></li>
+                    <a href="#" class="white-text"><i class="fa fa-empire pr-1"> </i><%=project.bugs.Resolved.count %></a></li>
+                  <li class="list-inline-item"><a href="#" class="white-text"><i class="fa fa-user pr-1"> <%=project.enrolled_user.count %> </i></a></li>
                 </ul>
               </div>
 

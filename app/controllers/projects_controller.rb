@@ -1,15 +1,14 @@
 class ProjectsController < ApplicationController
   before_action :set_project, only: [:show, :edit, :update, :destroy]
-
   # GET /projects
   # GET /projects.json
   def index
-    #UserMailer.with(user: @user).welcome_email.deliver_now
-    if current_user.Manager?
-      @projects = current_user.projects.all
+    # UserMailer.with(user: @user).welcome_email.deliver_now
+    @projects = if current_user.Manager?
+      current_user.projects.all
     else
-      @projects = current_user.project_enrollment
-    end
+      current_user.project_enrollment
+                end
   end
 
   # GET /projects/1
@@ -33,8 +32,7 @@ class ProjectsController < ApplicationController
   def create
     @project = Project.new(project_params)
     @project.creator = current_user
-    @project.enrolled_user = User.find(params[:users])
-
+    @project.enrolled_user = params[:purple]
     respond_to do |format|
       if @project.save
         format.html {redirect_to @project, notice: 'Project was successfully created.'}
@@ -79,6 +77,6 @@ class ProjectsController < ApplicationController
 
   # Never trust parameters from the scary internet, only allow the white list through.
   def project_params
-    params.require(:project).permit(:title, :description)
+    params.require(:project).permit(:title, :description,enrollments:{})
   end
 end

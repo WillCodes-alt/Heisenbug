@@ -1,6 +1,5 @@
 class BugsController < ApplicationController
   before_action :set_bug, only: [:show, :edit, :update, :destroy]
-
   # GET /bugs
   # GET /bugs.json
   def index
@@ -33,7 +32,6 @@ class BugsController < ApplicationController
     #form_data[:assigned_to] = User.find(bug_params[:assigned_to])
     @bug = @project.bugs.new(form_data)
     @bug.posted_by = current_user
-
     respond_to do |format|
       if @bug.save
         format.html {redirect_to [@project, @bug], notice: 'Bug was successfully created.'}
@@ -50,7 +48,7 @@ class BugsController < ApplicationController
   def update
     respond_to do |format|
       form_data = bug_params
-     # form_data[:assigned_to] = User.find(bug_params[:assigned_to])
+      # form_data[:assigned_to] = User.find(bug_params[:assigned_to])
       if @bug.update(form_data)
         format.html {redirect_to @bug, notice: 'Bug was successfully updated.'}
         format.json {render :show, status: :ok, location: @bug}
@@ -66,7 +64,7 @@ class BugsController < ApplicationController
   def destroy
     @bug.destroy
     respond_to do |format|
-      format.html {redirect_to [@project,Bug], notice: 'Bug was successfully destroyed.'}
+      format.html {redirect_to [@project, Bug], notice: 'Bug was successfully destroyed.'}
       format.json {head :no_content}
     end
   end

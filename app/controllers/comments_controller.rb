@@ -1,6 +1,5 @@
 class CommentsController < ApplicationController
   before_action :set_comment, only: [:show, :edit, :update, :destroy]
-
   # GET /comments
   # GET /comments.json
   def index
@@ -16,7 +15,6 @@ class CommentsController < ApplicationController
 
   # GET /comments/new
   # def
-
   # GET /comments/1/edit
   def edit
   end
@@ -24,18 +22,15 @@ class CommentsController < ApplicationController
   # POST /comments
   # POST /comments.json
   def create
-
     pp comment_params
-
     @bug = Bug.find(params[:bug_id])
     @comment = Comment.new(comment_params)
     @comment.user = current_user
     @comment.bug = @bug
     authorize @comment
-
     respond_to do |format|
       if @comment.save
-        format.html {redirect_to @comment, notice: 'Comment was successfully created.'}
+        format.html {redirect_to [@bug.project, @bug]}
         format.json {render 'bugs', status: :created, location: @comment}
       else
         p 'hello'
@@ -62,9 +57,10 @@ class CommentsController < ApplicationController
   # DELETE /comments/1
   # DELETE /comments/1.json
   def destroy
+
     @comment.destroy
     respond_to do |format|
-      format.html {redirect_to [@project,@bug], notice: 'Comment was successfully destroyed.'}
+      format.html {redirect_to [@project, @bug], notice: 'Comment was successfully destroyed.'}
       format.json {head :no_content}
     end
   end
