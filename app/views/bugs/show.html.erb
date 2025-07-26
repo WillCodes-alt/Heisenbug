@@ -67,9 +67,6 @@
                         <i class="fa fa-trash"></i>
                         <% end %>
                         </span>
-                    
-                    
-                    
                     </span>
                     <% end %>
                   </li>
@@ -134,6 +131,21 @@
               <% end %>
             
             </li>
+            
+            <% if ( !@bug.assigned_to_id? && current_user.Developer?) %>
+            <li class="list-group-item">
+              <%= link_to 'Pick me up !!',:toggle,class:'btn btn-block white-text mdb-color darken-3' %>
+            </li>
+  
+            <% end %>
+            
+            
+            <% if @bug.assigned_to == current_user %>
+              <li class="list-group-item">
+                <%= link_to 'put me down !!',:toggle,class:'btn btn-block white-text mdb-color darken-3', remote: true %>
+              </li>
+            <% end %>
+            
           </ul>
         </div>
       </div>

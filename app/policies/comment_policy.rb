@@ -25,7 +25,7 @@ class CommentPolicy < ApplicationPolicy
   end
 
   def delete?
-    if @comment.user == @user || @user.Manager?
+    if @comment.user == @user
       return true
     end
     false
