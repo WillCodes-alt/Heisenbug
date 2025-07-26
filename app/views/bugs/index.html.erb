@@ -16,8 +16,10 @@
       <div class="col-lg-9">
         <div class="d-sm-flex align-items-center justify-content-between mb-4">
           <h1 class="h3 mb-0 text-gray-800">Project Bugs <i class="fa fa-bug"></i></h1>
-          <a href="<%= new_project_bug_path @project %>" class="btn btn-sm btn-dark mdb-color darken-3 text-white"><i class="fa fa-plus fa-sm text-white"></i>
-            create new Bug</a>
+          <% if policy(@project).can_create_bug? %>
+            <a href="<%= new_project_bug_path @project %>" class="btn btn-sm btn-dark mdb-color darken-3 text-white"><i class="fa fa-plus fa-sm text-white"></i>
+              create new Bug</a>
+          <%end %>
         </div>
         <% @bugs.each do |bug| %>
           <div class="row mb-4">
@@ -38,12 +40,16 @@
                           <i class="fa fa-arrow-up blue-text"></i>
                         <% end %>
                         <div class="float-right">
+                          <% if policy(bug).destroy? %>
                           <%= link_to [@project, bug], method: :delete, data: {confirm: "Are you sure you want to delete this user?"}, class: "btn btn-responsive btn-default btn-sm mdb-color darken-3 " do %>
                             <%= fa_icon "bitbucket" %> Delete
                           <% end %>
+                            <%end %>
+                          <% if policy(bug).edit? %>
                           <%= link_to edit_project_bug_path(@project, bug), class: "btn btn-responsive btn-default btn-sm mdb-color darken-3" do %>
                             <%= fa_icon "pencil" %> Edit
                           <% end %>
+                            <% end %>
                         </div>
                       </h4>
                     </div>

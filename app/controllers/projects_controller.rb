@@ -32,7 +32,11 @@ class ProjectsController < ApplicationController
   def create
     @project = Project.new(project_params)
     @project.creator = current_user
-    @project.enrolled_user = params[:purple]
+    if params[:project][:users].any?
+      params[:project][:users].reject!(&:empty?)
+    @project.enrolled_user = User.find(params[:project][:users])
+    end
+    authorize @project
     respond_to do |format|
       if @project.save
         format.html {redirect_to @project, notice: 'Project was successfully created.'}
@@ -47,6 +51,7 @@ class ProjectsController < ApplicationController
   # PATCH/PUT /projects/1
   # PATCH/PUT /projects/1.json
   def update
+    authorize @project
     respond_to do |format|
       if @project.update(project_params)
         format.html {redirect_to @project, notice: 'Project was successfully updated.'}
@@ -77,6 +82,6 @@ class ProjectsController < ApplicationController
 
   # Never trust parameters from the scary internet, only allow the white list through.
   def project_params
-    params.require(:project).permit(:title, :description,enrollments:{})
+    params.require(:project).permit(:title, :description)
   end
 end

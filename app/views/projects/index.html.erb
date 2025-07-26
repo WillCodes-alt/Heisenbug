@@ -87,8 +87,10 @@
 
     <div class="d-sm-flex align-items-center justify-content-between mb-4">
       <h1 class="h3 mb-0 text-gray-800">Projects</h1>
+       <% if policy(Project).new? %>
         <a href="<%= new_project_path %>" class="btn btn-sm btn-dark mdb-color darken-3 text-white"><i class="fa fa-plus fa-sm text-white"></i>
           create new Project</a>
+        <% end %>
     </div>
 
     <% @projects.each do |project|%>
@@ -112,17 +114,21 @@
                   <div class="justify-content-between">
                     <h4>
                       <%= link_to project.title, project_path(project) %>
-                      </a>
+                     
 
 
                       <div class="float-right">
+                        <% if policy(project).delete? %>
                         <%= link_to project, method: :delete,data: {confirm: "Are you sure you want to delete this user?" }, class:"btn btn-responsive btn-default btn-sm mdb-color darken-3 " do %>
                           <%= fa_icon "bitbucket" %> Delete
                         <% end %>
-
+                          <% end %>
+  
+                        <% if policy(project).edit? %>
                         <%= link_to edit_project_path(project) ,class:"btn btn-responsive btn-default btn-sm mdb-color darken-3" do %>
                           <%= fa_icon "pencil" %> Edit
                         <% end %>
+                          <% end %>
                       </div>
 
 

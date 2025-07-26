@@ -30,12 +30,16 @@
               </div>
             <% end %>
             <div class="float-right mt-3">
+              <% if policy(@bug).destroy? %>
               <%= link_to [@project, @bug], method: :delete, data: {confirm: "Are you sure you want to delete this user?"}, class: "btn btn-responsive btn-default btn-sm mdb-color darken-3 " do %>
                 <%= fa_icon "bitbucket" %> Delete
               <% end %>
+                <% end %>
+              <% if policy(@bug).edit? %>
               <%= link_to edit_project_bug_path(@project, @bug), class: "btn btn-responsive btn-default btn-sm mdb-color darken-3" do %>
                 <%= fa_icon "pencil" %> Edit
               <% end %>
+                <% end %>
             </div>
           
           

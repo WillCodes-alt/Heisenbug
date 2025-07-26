@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="DataSourceManagerImpl" format="xml" multifile-model="true">
+    <data-source source="LOCAL" name="Rails BugZilla: test" uuid="193d8ed2-3a3a-4dc7-821b-aa470a7526be">
+      <driver-ref>postgresql</driver-ref>
+      <synchronize>true</synchronize>
+      <imported>true</imported>
+      <remarks>$PROJECT_DIR$/config/database.yml</remarks>
+      <jdbc-driver>org.postgresql.Driver</jdbc-driver>
+      <jdbc-url>jdbc:postgresql://127.0.0.1:5432/BugZilla_test</jdbc-url>
+    </data-source>
+    <data-source source="LOCAL" name="Rails BugZilla: production" uuid="466468bd-6e3f-4bbe-aa0d-9a15069e505c">
+      <driver-ref>postgresql</driver-ref>
+      <synchronize>true</synchronize>
+      <imported>true</imported>
+      <remarks>$PROJECT_DIR$/config/database.yml</remarks>
+      <jdbc-driver>org.postgresql.Driver</jdbc-driver>
+      <jdbc-url>jdbc:postgresql://127.0.0.1:5432/BugZilla_production</jdbc-url>
+    </data-source>
+    <data-source source="LOCAL" name="Rails BugZilla: development" uuid="a72bd20a-9f41-489d-aaf7-9e61e8b19e8f">
+      <driver-ref>postgresql</driver-ref>
+      <synchronize>true</synchronize>
+      <imported>true</imported>
+      <remarks>$PROJECT_DIR$/config/database.yml</remarks>
+      <jdbc-driver>org.postgresql.Driver</jdbc-driver>
+      <jdbc-url>jdbc:postgresql://127.0.0.1:5432/BugZilla_development</jdbc-url>
+    </data-source>
+  </component>
+</project>

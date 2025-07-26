@@ -1,1 +1,138 @@
-<h1>welcome developer</h1>
+<%= render 'layouts/header' %>
+<section>
+  <div class="container-fluid">
+    <!-- Page Heading -->
+    <div class="d-sm-flex align-items-center justify-content-between mb-4">
+      <h1 class="h3 mb-0 text-gray-800">Dashboard</h1>
+    </div>
+    <!-- Content Row -->
+    <div class="row">
+      <div class="col-xl-3 col-md-6 mb-4">
+        <div class="card border-left-primary shadow h-100 py-2">
+          <div class="card-body">
+            <div class="row no-gutters align-items-center">
+              <div class="col mr-2">
+                <div class="text-xs font-weight-bold text-primary text-uppercase mb-1">Total Bugs</div>
+                <div class="h5 mb-0 font-weight-bold text-gray-800"><%= @bug_count %></div>
+              </div>
+              <div class="col-auto">
+                <i class="fa fa-calendar fa-2x text-gray-300"></i>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="col-xl-3 col-md-6 mb-4">
+        <div class="card border-left-success shadow h-100 py-2">
+          <div class="card-body">
+            <div class="row no-gutters align-items-center">
+              <div class="col mr-2">
+                <div class="text-xs font-weight-bold text-success text-uppercase mb-1">Active</div>
+                <div class="h5 mb-0 font-weight-bold text-gray-800"><%= @bug_active %></div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <!-- Earnings (Monthly) Card Example -->
+      <div class="col-xl-3 col-md-6 mb-4">
+        <div class="card border-left-info shadow h-100 py-2">
+          <div class="card-body">
+            <div class="row no-gutters align-items-center">
+              <div class="col mr-2">
+                <div class="text-xs font-weight-bold text-info text-uppercase mb-1">Work Left</div>
+                <div class="row no-gutters align-items-center">
+                  <div class="col-auto">
+                    <div class="h5 mb-0 mr-3 font-weight-bold text-gray-800"><%= @work_prog%>%</div>
+                  </div>
+                  <div class="col">
+                    <div class="progress progress-sm mr-2">
+                      <div class="progress-bar bg-info" role="progressbar" style="width: <%=@work_prog%>%" aria-valuenow="50" aria-valuemin="0" aria-valuemax="100"></div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="col-auto">
+                <i class="fa fa-clipboard-list fa-2x text-gray-300"></i>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <!-- Pending Requests Card Example -->
+      <div class="col-xl-3 col-md-6 mb-4">
+        <div class="card border-left-warning shadow h-100 py-2">
+          <div class="card-body">
+            <div class="row no-gutters align-items-center">
+              <div class="col mr-2">
+                <div class="text-xs font-weight-bold text-warning text-uppercase mb-1">Resolved Bugs</div>
+                <div class="h5 mb-0 font-weight-bold text-gray-800"><%= @bug_resolved %></div>
+              </div>
+              <div class="col-auto">
+                <i class="fa fa-comments fa-2x text-gray-300"></i>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+<section id="projects">
+  <div class="container-fluid">
+    <div class="d-sm-flex align-items-center justify-content-between mb-4">
+      <h1 class="h3 mb-0 text-gray-800">Projects</h1>
+      <div class="justify-content-end">
+        <a href="<%= projects_path %>" class="btn btn-sm btn-dark mdb-color darken-3 text-white"><i class="fa fa-eye fa-lg text-white"></i>
+          All Projects</a>
+        
+        <% if policy(Project).new? %>
+          
+          
+          <a href="<%= new_project_path %>" class="btn btn-sm btn-dark mdb-color darken-3 text-white"><i class="fa fa-plus fa-sm text-white"></i>
+            create new Project</a>
+        
+        
+        <% end %>
+      </div>
+    </div>
+    <% projects.each do |project| %>
+      <div class="row mb-4">
+        <a class="" href="<%= project_path project %>">
+          <div class="col-lg-12">
+            <!-- Card -->
+            <div class="card">
+              <!-- Card content -->
+              <div class="card-body">
+                <!-- Title -->
+                <h4 class="card-title"><%= project.title %></h4>
+                <hr>
+                <!-- Text -->
+                <div class="fr-view">
+                  <p class="card-text"><%= raw project.description %>
+                  </p>
+                </div>
+              </div>
+              <!-- Card footer -->
+              <div class="rounded-bottom mdb-color darken-3  pt-3">
+                <ul class="list-unstyled list-inline font-small">
+                  <li class="list-inline-item pr-2 white-text"><i class="far fa-clock pr-1"></i><b>Started</b>:
+                    <%= project.created_at.to_date %>
+                  </li>
+                  <li class="list-inline-item pr-2"><a href="#" class="white-text"><i class="fa fa-bug pr-1"></i><%= project.bugs.count %></a>
+                  </li>
+                  <li class="list-inline-item pr-2">
+                    <a href="#" class="white-text"><i class="fa fa-empire pr-1"> </i><%=project.bugs.Resolved.count %></a></li>
+                  <li class="list-inline-item"><a href="#" class="white-text"><i class="fa fa-user pr-1"> </i><%=project.enrolled_user.count %></a></li>
+                </ul>
+              </div>
+            </div>
+            <!-- Card -->
+          </div>
+        </a>
+      </div>
+    
+    <% end %>
+  </div>
+  <!-- Content Row -->
+</section>
