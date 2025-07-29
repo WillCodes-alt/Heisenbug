@@ -22,9 +22,7 @@ class BugPolicy < ApplicationPolicy
     false
   end
   def edit?
-    if @bug.posted_by ==@user
-      return true
-    end
+    return true if @bug.posted_by == @user
     false
   end
   def update?
@@ -33,8 +31,10 @@ class BugPolicy < ApplicationPolicy
     end
     false
   end
+
+  # @return [Object]
   def delete?
-    if (@bug.posted_by == @user) || @user.Manager?
+    if @bug.posted_by == @user
       return true
     end
     false

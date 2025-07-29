@@ -1,3 +1,4 @@
+
 <% if current_user.Manager? %>
   <%= render "dashboard/manager", projects: @projects %>
 <% elsif current_user.Developer?%>

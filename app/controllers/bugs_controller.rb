@@ -51,7 +51,7 @@ class BugsController < ApplicationController
       form_data = bug_params
       # form_data[:assigned_to] = User.find(bug_params[:assigned_to])
       if @bug.update(form_data)
-        format.html {redirect_to @bug, notice: 'Bug was successfully updated.'}
+        format.html {redirect_to [@project,@bug], notice: 'Bug was successfully updated.'}
         format.json {render :show, status: :ok, location: @bug}
       else
         format.html {render :edit}
