@@ -9,7 +9,9 @@ Rails.application.routes.draw do
     end
   end
   get '/dashboard', to: 'dashboard#index', as: :user_root
-  get 'toggle', to: 'bug#toggle', as: :toggle
+  post '/projects/:project_id/bugs/:id', to: 'bugs#pick', as: :pick
+  post '/projects/:project_id/bugs/:id/drop', to: 'bugs#drop', as: :drop
+  post '/projects/:project_id/bugs/:id/status', to: 'bugs#status', as: :status
   root to: 'home#index'
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
 end

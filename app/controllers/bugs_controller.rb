@@ -1,5 +1,7 @@
+# frozen_string_literal: true
+
 class BugsController < ApplicationController
-  before_action :set_bug, only: [:show, :edit, :update, :destroy]
+  before_action :set_bug, only: %i[show edit update destroy]
   # GET /bugs
   # GET /bugs.json
   def index
@@ -9,8 +11,7 @@ class BugsController < ApplicationController
 
   # GET /bugs/1
   # GET /bugs/1.json
-  def show
-  end
+  def show; end
 
   # GET /bugs/new
   def new
@@ -69,8 +70,44 @@ class BugsController < ApplicationController
     end
   end
 
-  def toggle
+  def pick
+    @project = Project.find(params[:project_id].to_i)
+    if @project
+      @bug = @project.bugs.find(params[:id].to_i)
+      if @bug
+        if !(@bug.assigned_to_id?)
+          @bug.assigned_to = current_user
+          @bug.save
+        end
+      end
+    end
+    redirect_to [@project, @bug]
+  end
 
+  def drop
+    @project = Project.find(params[:project_id].to_i)
+    if @project
+      @bug = @project.bugs.find(params[:id].to_i)
+      if @bug
+        if @bug.assigned_to == current_user
+          @bug.assigned_to = nil
+          @bug.save
+        end
+      end
+    end
+    redirect_to  [@project, @bug]
+  end
+
+  def status
+    if(params[:status].to_i ==0 ||params[:status].to_i ==1 || params[:status].to_i==3)
+      @project = Project.find(params[:project_id])
+      @bug = @project.bugs.find(params[:id])
+      if @project && @bug
+        @bug.status = params[:status].to_i
+        @bug.save
+      end
+    end
+    redirect_to  [@project, @bug]
   end
 
   private

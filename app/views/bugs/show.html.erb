@@ -134,7 +134,10 @@
             
             <% if ( !@bug.assigned_to_id? && current_user.Developer?) %>
             <li class="list-group-item">
-              <%= link_to 'Pick me up !!',:toggle,class:'btn btn-block white-text mdb-color darken-3' %>
+              <%= form_for pick_path(@bug.project,@bug) do |form|  %>
+              <%= form.submit "Pick me up !!",class:'btn btn-block white-text mdb-color darken-3' %>
+              <% end %>
+            
             </li>
   
             <% end %>
@@ -142,8 +145,20 @@
             
             <% if @bug.assigned_to == current_user %>
               <li class="list-group-item">
-                <%= link_to 'put me down !!',:toggle,class:'btn btn-block white-text mdb-color darken-3', remote: true %>
+                <%= form_tag drop_path(@bug.project,@bug) do |form|  %>
+                  <%= submit_tag "put me down !!",class:'btn btn-block white-text mdb-color darken-3' %>
+                <% end %>
+
               </li>
+    
+              <li class="list-group-item">
+                <%= form_tag status_path(@bug.project,@bug) do |form|  %>
+                  <%= select_tag :status,options_for_select(Bug.statuses.reject{|key,value| value==2 or value==Bug.statuses[@bug.status]},Bug.statuses[@bug.status]),{class:'form-control'} %>
+                  <%= submit_tag "Change Status",class:'btn btn-block white-text mdb-color darken-3 mt-2 btn-sm' %>
+                <% end %>
+    
+              </li>
+              
             <% end %>
             
           </ul>

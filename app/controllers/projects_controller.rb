@@ -34,16 +34,16 @@ class ProjectsController < ApplicationController
     @project.creator = current_user
     if params[:project][:users].any?
       params[:project][:users].reject!(&:empty?)
-    @project.enrolled_user = User.find(params[:project][:users])
+      @project.enrolled_user = User.find( params[:project][:users])
     end
     authorize @project
     respond_to do |format|
       if @project.save
-        format.html {redirect_to @project, notice: 'Project was successfully created.'}
-        format.json {render :show, status: :created, location: @project}
+        format.html { redirect_to @project, notice: 'Project was successfully created.'}
+        format.json { render :show, status: :created, location: @project}
       else
-        format.html {render :new}
-        format.json {render json: @project.errors, status: :unprocessable_entity}
+        format.html { render :new}
+        format.json { render json: @project.errors, status: :unprocessable_entity}
       end
     end
   end
