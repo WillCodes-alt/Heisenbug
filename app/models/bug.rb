@@ -6,7 +6,7 @@ class Bug < ApplicationRecord
 
   has_many_attached :images
 
-  enum usertype: [:Bug, :Feature,:Improvement]
-  enum status: [:New, :Started, :Completed,:Resolved]
+  enum usertype: %i[Bug Feature Improvement]
+  enum status: %i[New Started Completed Resolved]
 
 end

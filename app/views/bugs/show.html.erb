@@ -31,15 +31,15 @@
             <% end %>
             <div class="float-right mt-3">
               <% if policy(@bug).destroy? %>
-              <%= link_to [@project, @bug], method: :delete, data: {confirm: "Are you sure you want to delete this user?"}, class: "btn btn-responsive btn-default btn-sm mdb-color darken-3 " do %>
-                <%= fa_icon "bitbucket" %> Delete
-              <% end %>
+                <%= link_to [@project, @bug], method: :delete, data: {confirm: "Are you sure you want to delete this user?"}, class: "btn btn-responsive btn-default btn-sm mdb-color darken-3 " do %>
+                  <%= fa_icon "bitbucket" %> Delete
                 <% end %>
+              <% end %>
               <% if policy(@bug).edit? %>
-              <%= link_to edit_project_bug_path(@project, @bug), class: "btn btn-responsive btn-default btn-sm mdb-color darken-3" do %>
-                <%= fa_icon "pencil" %> Edit
-              <% end %>
+                <%= link_to edit_project_bug_path(@project, @bug), class: "btn btn-responsive btn-default btn-sm mdb-color darken-3" do %>
+                  <%= fa_icon "pencil" %> Edit
                 <% end %>
+              <% end %>
             </div>
           
           
@@ -82,7 +82,7 @@
                       <i class="fa fa-user-circle fa-2x blue-text white border rounded rounded-circle flex-column"></i>
                       </span><span class="white-text"><%= current_user.full_name %>: </span>
                     <span class="d-lg-inline-block">
-                    <%= form.text_field :statement, size: 80 %>
+                    <%= form.text_field :statement, size: 80, class: 'w-responsive' %>
                       <%= form.submit class: 'mdb-color darken-3 white-text border-2' %>
                   </span>
                   </li>
@@ -132,35 +132,35 @@
             
             </li>
             
-            <% if ( !@bug.assigned_to_id? && current_user.Developer?) %>
-            <li class="list-group-item">
-              <%= form_for pick_path(@bug.project,@bug) do |form|  %>
-              <%= form.submit "Pick me up !!",class:'btn btn-block white-text mdb-color darken-3' %>
-              <% end %>
+            <% if (!@bug.assigned_to_id? && current_user.Developer?) %>
+              <li class="list-group-item">
+                <%= form_for pick_path(@bug.project, @bug) do |form| %>
+                  <%= form.submit "Pick me up !!", class: 'btn btn-block white-text mdb-color darken-3' %>
+                <% end %>
+              
+              </li>
             
-            </li>
-  
             <% end %>
             
             
             <% if @bug.assigned_to == current_user %>
               <li class="list-group-item">
-                <%= form_tag drop_path(@bug.project,@bug) do |form|  %>
-                  <%= submit_tag "put me down !!",class:'btn btn-block white-text mdb-color darken-3' %>
+                <%= form_tag drop_path(@bug.project, @bug) do |form| %>
+                  <%= submit_tag "put me down !!", class: 'btn btn-block white-text mdb-color darken-3' %>
                 <% end %>
-
-              </li>
-    
-              <li class="list-group-item">
-                <%= form_tag status_path(@bug.project,@bug) do |form|  %>
-                  <%= select_tag :status,options_for_select(Bug.statuses.reject{|key,value| value==2 or value==Bug.statuses[@bug.status]},Bug.statuses[@bug.status]),{class:'form-control'} %>
-                  <%= submit_tag "Change Status",class:'btn btn-block white-text mdb-color darken-3 mt-2 btn-sm' %>
-                <% end %>
-    
+              
               </li>
               
-            <% end %>
+              <li class="list-group-item">
+                <%= form_tag status_path(@bug.project, @bug) do |form| %>
+                  <%= select_tag :status, options_for_select(Bug.statuses.reject {|key, value| value == 2 or value == Bug.statuses[@bug.status]}, Bug.statuses[@bug.status]), {class: 'form-control'} %>
+                  <%= submit_tag "Change Status", class: 'btn btn-block white-text mdb-color darken-3 mt-2 btn-sm' %>
+                <% end %>
+              
+              </li>
             
+            <% end %>
+          
           </ul>
         </div>
       </div>
