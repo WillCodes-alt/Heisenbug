@@ -99,7 +99,7 @@ class BugsController < ApplicationController
   end
 
   def status
-    if(params[:status].to_i ==0 ||params[:status].to_i ==1 || params[:status].to_i==3)
+    if params[:status].to_i >= 0 && params[:status].to_i <= 3
       @project = Project.find(params[:project_id])
       @bug = @project.bugs.find(params[:id])
       if @project && @bug

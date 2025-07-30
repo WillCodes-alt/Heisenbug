@@ -63,7 +63,8 @@ Rails.application.configure do
       user_name: 'myaccount@gmail.com',
       password: '',
       authentication: 'plain',
-      enable_starttls_auto: true}
+      enable_starttls_auto: true
+  }
 
   # Raises error for missing translations
   # config.action_view.raise_on_missing_translations = true

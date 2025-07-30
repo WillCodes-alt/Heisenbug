@@ -1,6 +1,6 @@
 <%= render 'layouts/header' %>
 <section>
-  <div class="container-fluid">
+  <div class="container-fluid mt-5 pt-3">
     <p id="notice"><%= notice %></p>
     <div class="row">
       <div class="col-lg-9 mt-3">
@@ -167,7 +167,7 @@
               
               <li class="list-group-item">
                 <%= form_tag status_path(@bug.project, @bug) do |form| %>
-                  <%= select_tag :status, options_for_select(Bug.statuses.reject {|key, value| value == 2 or value == Bug.statuses[@bug.status]}, Bug.statuses[@bug.status]), {class: 'form-control'} %>
+                  <%= select_tag :status, options_for_select(Bug.statuses.reject {|key, value| (value == 2 && @bug.Bug?) or (value ==3 && @bug.Feature?) or value == Bug.statuses[@bug.status]}, Bug.statuses[@bug.status]), {class: 'form-control'} %>
                   <%= submit_tag "Change Status", class: 'btn btn-block white-text mdb-color darken-3 mt-2 btn-sm' %>
                 <% end %>
               
