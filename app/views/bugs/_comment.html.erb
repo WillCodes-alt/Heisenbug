@@ -1,0 +1,23 @@
+<% if comments.count > 0 %>
+  <% comments.each do |comment| %>
+    <li class="list-group-item p-1">
+                      <span class="fa-stack fa-lg mr-1">
+                      <i class="fa fa-user-circle fa-2x blue-text"></i>
+                      </span><span class="purple-text"><%= comment.user.full_name %>
+      : </span><span> <%= comment.statement %></span>
+      <% if policy(comment).delete? %>
+                    <span class="float-right grey-text">
+                      
+                      <span class="hoverable">
+                    
+                        <%= link_to [comment.bug.project, comment.bug, comment], method: :delete, data: {confirm: 'Are you sure?'} do %>
+                        <i class="fa fa-trash"></i>
+                        <% end %>
+                        </span>
+                    </span>
+      <% end %>
+    </li>
+  <% end %>
+
+<% end %>
+

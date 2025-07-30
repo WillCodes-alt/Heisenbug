@@ -65,39 +65,19 @@
           </div>
           <div class="card-body">
             <ul class="list-group list-group-flush">
-              <% if @bug.comments.count > 0 %>
-                <% @bug.comments.each do |comment| %>
-                  <li class="list-group-item p-1">
-                      <span class="fa-stack fa-lg mr-1">
-                      <i class="fa fa-user-circle fa-2x blue-text"></i>
-                      </span><span class="purple-text"><%= comment.user.full_name %>
-                    : </span><span> <%= comment.statement %></span>
-                    <% if policy(comment).delete? %>
-                    <span class="float-right grey-text">
-                      
-                      <span class="hoverable">
-                    
-                        <%= link_to [@bug.project, @bug, comment], method: :delete, data: {confirm: 'Are you sure?'} do %>
-                        <i class="fa fa-trash"></i>
-                        <% end %>
-                        </span>
-                    </span>
-                    <% end %>
-                  </li>
-                <% end %>
-              
-              <% end %>
-              
-              
+              <div class="comment-container">
+                <%= render 'bugs/comment', comments: @bug.comments %>
+                
+              </div>
               <% if policy(@bug.comments.new).create? %>
-                <%= form_for([@project, @bug, @bug.comments.new]) do |form| %>
+                <%= form_for([@project, @bug, @bug.comments.new],remote: true) do |form| %>
                   <li class="list-group-item p-1 mdb-color mt-2">
                       <span class="fa-stack fa-lg mr-1">
                       <i class="fa fa-user-circle fa-2x blue-text white border rounded rounded-circle flex-column"></i>
                       </span><span class="white-text"><%= current_user.full_name %>: </span>
                     <span class="d-lg-inline-block">
                     <%= form.text_field :statement, size: 80, class: 'w-responsive' %>
-                      <%= form.submit class: 'mdb-color darken-3 white-text border-2' %>
+                      <%= form.submit "Comment", class: ' btn btn-sm btn-responsive mdb-color darken-3 white-text ' %>
                   </span>
                   </li>
                 <% end %>
@@ -121,7 +101,7 @@
                 <i class="fa fa-arrow-up fa-2x blue-text">Enhancement</i>
               <% end %>
             </li>
-            <li class="list-group-item"><i class="fa fa-comment fa-2x"> comments: <%= @bug.comments.count %></i></li>
+            <li class="list-group-item"><i class="fa fa-comment fa-2x"> comments: <span id="comment-count"><%= @bug.comments.count %></span></i></li>
             <li class="list-group-item"><i class="fa fa-flag fa-2x green-text"> Taken:
               <% if @bug.assigned_to_id? %>
                 <%= @bug.assigned_to.full_name %>
