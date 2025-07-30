@@ -2,14 +2,6 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="17f458d5-2382-4c40-9ad6-87cdb4af4ff6" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/app/assets/stylesheets/scaffolds.scss" beforeDir="false" afterPath="$PROJECT_DIR$/app/assets/stylesheets/scaffolds.scss" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/controllers/bugs_controller.rb" beforeDir="false" afterPath="$PROJECT_DIR$/app/controllers/bugs_controller.rb" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/views/bugs/show.html.erb" beforeDir="false" afterPath="$PROJECT_DIR$/app/views/bugs/show.html.erb" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/views/dashboard/_developer.html.erb" beforeDir="false" afterPath="$PROJECT_DIR$/app/views/dashboard/_developer.html.erb" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/views/dashboard/_manager.html.erb" beforeDir="false" afterPath="$PROJECT_DIR$/app/views/dashboard/_manager.html.erb" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/views/dashboard/_quality.html.erb" beforeDir="false" afterPath="$PROJECT_DIR$/app/views/dashboard/_quality.html.erb" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/views/home/index.html.erb" beforeDir="false" afterPath="$PROJECT_DIR$/app/views/home/index.html.erb" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/config/database.yml" beforeDir="false" afterPath="$PROJECT_DIR$/config/database.yml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/config/environments/development.rb" beforeDir="false" afterPath="$PROJECT_DIR$/config/environments/development.rb" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/.bundle/" />
@@ -37,11 +29,20 @@
           </provider>
         </entry>
       </file>
-      <file pinned="false" current-in-tab="true">
+      <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/config/database.yml">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="407">
               <caret line="27" column="22" selection-start-line="27" selection-start-column="22" selection-end-line="27" selection-end-column="22" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/config/environments/development.rb">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="170">
+              <caret line="63" column="25" selection-start-line="63" selection-start-column="25" selection-end-line="63" selection-end-column="25" />
             </state>
           </provider>
         </entry>
@@ -120,7 +121,6 @@
         <option value="$PROJECT_DIR$/app/controllers/dashboard_controller.rb" />
         <option value="$PROJECT_DIR$/app/policies/bug_policy.rb" />
         <option value="$PROJECT_DIR$/app/views/home/index.html.erb" />
-        <option value="$PROJECT_DIR$/config/environments/development.rb" />
         <option value="$PROJECT_DIR$/app/controllers/bugs_controller.rb" />
         <option value="$PROJECT_DIR$/app/views/bugs/show.html.erb" />
         <option value="$PROJECT_DIR$/app/views/dashboard/_developer.html.erb" />
@@ -128,6 +128,7 @@
         <option value="$PROJECT_DIR$/app/views/dashboard/_quality.html.erb" />
         <option value="$PROJECT_DIR$/app/assets/stylesheets/scaffolds.scss" />
         <option value="$PROJECT_DIR$/config/database.yml" />
+        <option value="$PROJECT_DIR$/config/environments/development.rb" />
       </list>
     </option>
   </component>
@@ -138,7 +139,7 @@
     <option name="FILTER_DEBUG" value="true" />
     <option name="CUSTOM_FILTER" />
   </component>
-  <component name="ProjectFrameBounds" extendedState="6">
+  <component name="ProjectFrameBounds" extendedState="7">
     <option name="x" value="62" />
     <option name="y" value="30" />
     <option name="width" value="1221" />
@@ -322,12 +323,12 @@
       <option name="presentableId" value="Default" />
       <updated>1564129527585</updated>
       <workItem from="1564129531144" duration="784000" />
-      <workItem from="1564132732247" duration="36331000" />
+      <workItem from="1564132732247" duration="36441000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="37115000" />
+    <option name="totallyTimeSpent" value="37225000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="0" y="0" width="1366" height="732" extended-state="6" />
@@ -566,13 +567,6 @@
     <entry file="file://$PROJECT_DIR$/app/helpers/bugs_helper.rb">
       <provider selected="true" editor-type-id="text-editor" />
     </entry>
-    <entry file="file://$PROJECT_DIR$/config/environments/development.rb">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="204">
-          <caret line="66" column="2" selection-start-line="66" selection-start-column="2" selection-end-line="66" selection-end-column="2" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/app/views/bugs/_form.html.erb">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="-782">
@@ -642,6 +636,13 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="407">
           <caret line="27" column="22" selection-start-line="27" selection-start-column="22" selection-end-line="27" selection-end-column="22" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/config/environments/development.rb">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="170">
+          <caret line="63" column="25" selection-start-line="63" selection-start-column="25" selection-end-line="63" selection-end-column="25" />
         </state>
       </provider>
     </entry>
