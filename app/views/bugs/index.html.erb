@@ -19,7 +19,7 @@
           <% if policy(@project).can_create_bug? %>
             <a href="<%= new_project_bug_path @project %>" class="btn btn-sm btn-dark mdb-color darken-3 text-white"><i class="fa fa-plus fa-sm text-white"></i>
               create new Bug</a>
-          <%end %>
+          <% end %>
         </div>
         <% @bugs.each do |bug| %>
           <div class="row mb-4">
@@ -41,15 +41,15 @@
                         <% end %>
                         <div class="float-right">
                           <% if policy(bug).delete? %>
-                          <%= link_to [@project, bug], method: :delete, data: {confirm: "Are you sure you want to delete this user?"}, class: "btn btn-responsive btn-default btn-sm mdb-color darken-3 " do %>
-                            <%= fa_icon "bitbucket" %> Delete
-                          <% end %>
-                            <%end %>
-                          <% if policy(bug).edit? %>
-                          <%= link_to edit_project_bug_path(@project, bug), class: "btn btn-responsive btn-default btn-sm mdb-color darken-3" do %>
-                            <%= fa_icon "pencil" %> Edit
-                          <% end %>
+                            <%= link_to [@project, bug], method: :delete, data: {confirm: "Are you sure you want to delete this user?"}, class: "btn btn-responsive btn-default btn-sm mdb-color darken-3 " do %>
+                              <%= fa_icon "bitbucket" %> Delete
                             <% end %>
+                          <% end %>
+                          <% if policy(bug).edit? %>
+                            <%= link_to edit_project_bug_path(@project, bug), class: "btn btn-responsive btn-default btn-sm mdb-color darken-3" do %>
+                              <%= fa_icon "pencil" %> Edit
+                            <% end %>
+                          <% end %>
                         </div>
                       </h4>
                     </div>

@@ -27,20 +27,20 @@
                     </div>
                   </a>
                 <% end %>
-  
-  
-  
+                
+                
+                
                 <div class="row">
-                <% @bug.images.each do |image| %>
-    
+                  <% @bug.images.each do |image| %>
+                    
                     <div class="column">
                       <img src="<%= rails_blob_path(image) %>" width="200px" height="200px" class="mt-2 mr-2 border border-dark">
                     </div>
-                    
-                   <% end %>
+                  
+                  <% end %>
                 </div>
-                
-                
+              
+              
               </div>
             <% end %>
             <div class="float-right mt-3">
@@ -67,10 +67,10 @@
             <ul class="list-group list-group-flush">
               <div class="comment-container">
                 <%= render 'bugs/comment', comments: @bug.comments %>
-                
+              
               </div>
               <% if policy(@bug.comments.new).create? %>
-                <%= form_for([@project, @bug, @bug.comments.new],remote: true) do |form| %>
+                <%= form_for([@project, @bug, @bug.comments.new], remote: true) do |form| %>
                   <li class="list-group-item p-1 mdb-color mt-2">
                       <span class="fa-stack fa-lg mr-1">
                       <i class="fa fa-user-circle fa-2x blue-text white border rounded rounded-circle flex-column"></i>
@@ -101,7 +101,9 @@
                 <i class="fa fa-arrow-up fa-2x blue-text">Enhancement</i>
               <% end %>
             </li>
-            <li class="list-group-item"><i class="fa fa-comment fa-2x"> comments: <span id="comment-count"><%= @bug.comments.count %></span></i></li>
+            <li class="list-group-item">
+              <i class="fa fa-comment fa-2x"> comments: <span id="comment-count"><%= @bug.comments.count %></span></i>
+            </li>
             <li class="list-group-item"><i class="fa fa-flag fa-2x green-text"> Taken:
               <% if @bug.assigned_to_id? %>
                 <%= @bug.assigned_to.full_name %>
@@ -147,7 +149,7 @@
               
               <li class="list-group-item">
                 <%= form_tag status_path(@bug.project, @bug) do |form| %>
-                  <%= select_tag :status, options_for_select(Bug.statuses.reject {|key, value| (value == 2 && @bug.Bug?) or (value ==3 && @bug.Feature?) or value == Bug.statuses[@bug.status]}, Bug.statuses[@bug.status]), {class: 'form-control'} %>
+                  <%= select_tag :status, options_for_select(Bug.statuses.reject {|key, value| (value == 2 && @bug.Bug?) or (value == 3 && @bug.Feature?) or value == Bug.statuses[@bug.status]}, Bug.statuses[@bug.status]), {class: 'form-control'} %>
                   <%= submit_tag "Change Status", class: 'btn btn-block white-text mdb-color darken-3 mt-2 btn-sm' %>
                 <% end %>
               
