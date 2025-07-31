@@ -18,7 +18,6 @@ class ProjectPolicy < ApplicationPolicy
     false
   end
   def create?
-
     if @user.role =='Manager'
       return true
     end
@@ -46,6 +45,14 @@ class ProjectPolicy < ApplicationPolicy
     end
     false
   end
+  def can_create_bug?
+
+    if @user.Quality? && @user.project_enrollment.include?(@project)
+      return true
+    end
+    false
+    end
+
 
 
 end

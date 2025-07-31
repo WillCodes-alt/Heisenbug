@@ -1,7 +1,8 @@
+
 <% if current_user.Manager? %>
-  <%= render "dashboard/manager" %>
+  <%= render "dashboard/manager", projects: @projects %>
 <% elsif current_user.Developer?%>
-    <%= render  "dashboard/developer" %>
+    <%= render  "dashboard/developer", projects: @projects %>
 <% else %>
-<%= render  "dashboard/quality" %>
+<%= render  "dashboard/quality", projects: @projects %>
 <% end %>

@@ -11,4 +11,8 @@ class User < ApplicationRecord
   has_many :project_enrollment , through: :enrollments ,source: :project
 
   enum role: [:Manager, :Developer, :Quality]
+
+  def name_with_type
+    "#{full_name} - #{role}"
+  end
 end

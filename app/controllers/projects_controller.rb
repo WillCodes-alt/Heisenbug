@@ -1,14 +1,14 @@
 class ProjectsController < ApplicationController
   before_action :set_project, only: [:show, :edit, :update, :destroy]
-
   # GET /projects
   # GET /projects.json
   def index
-    if current_user.Manager?
-      @projects = current_user.projects.all
+    # UserMailer.with(user: @user).welcome_email.deliver_now
+    @projects = if current_user.Manager?
+      current_user.projects.all
     else
-      @projects = current_user.project_enrollment
-    end
+      current_user.project_enrollment
+                end
   end
 
   # GET /projects/1
@@ -32,14 +32,18 @@ class ProjectsController < ApplicationController
   def create
     @project = Project.new(project_params)
     @project.creator = current_user
-
+    if params[:project][:users].any?
+      params[:project][:users].reject!(&:empty?)
+      @project.enrolled_user = User.find( params[:project][:users])
+    end
+    authorize @project
     respond_to do |format|
       if @project.save
-        format.html {redirect_to @project, notice: 'Project was successfully created.'}
-        format.json {render :show, status: :created, location: @project}
+        format.html { redirect_to @project, notice: 'Project was successfully created.'}
+        format.json { render :show, status: :created, location: @project}
       else
-        format.html {render :new}
-        format.json {render json: @project.errors, status: :unprocessable_entity}
+        format.html { render :new}
+        format.json { render json: @project.errors, status: :unprocessable_entity}
       end
     end
   end
@@ -47,6 +51,7 @@ class ProjectsController < ApplicationController
   # PATCH/PUT /projects/1
   # PATCH/PUT /projects/1.json
   def update
+    authorize @project
     respond_to do |format|
       if @project.update(project_params)
         format.html {redirect_to @project, notice: 'Project was successfully updated.'}

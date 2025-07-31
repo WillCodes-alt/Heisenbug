@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="dataSourceStorageLocal">
+    <data-source name="Rails BugZilla: test" uuid="193d8ed2-3a3a-4dc7-821b-aa470a7526be">
+      <database-info product="" version="" jdbc-version="" driver-name="" driver-version="" dbms="POSTGRES" exact-version="0" />
+    </data-source>
+    <data-source name="Rails BugZilla: production" uuid="466468bd-6e3f-4bbe-aa0d-9a15069e505c">
+      <database-info product="" version="" jdbc-version="" driver-name="" driver-version="" dbms="POSTGRES" exact-version="0" />
+      <user-name>BugZilla</user-name>
+    </data-source>
+    <data-source name="Rails BugZilla: development" uuid="a72bd20a-9f41-489d-aaf7-9e61e8b19e8f">
+      <database-info product="" version="" jdbc-version="" driver-name="" driver-version="" dbms="POSTGRES" exact-version="0" />
+    </data-source>
+  </component>
+</project>
